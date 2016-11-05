@@ -24,11 +24,8 @@ public class CoordinateTest {
 	//testing if distance is calculuted properly
 	@Test()
 	public void testGetDistance(){
-		double distance_hard = 8228;
-		
+		double distance_hard = 8228;	
 		double distance_methode = Vancouver.getDistance(Nuremberg);
-		System.out.println(distance_methode);
-		
 		assertEquals(distance_hard, distance_methode,0.5);
 		
 	}

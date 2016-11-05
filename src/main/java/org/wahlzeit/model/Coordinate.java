@@ -8,22 +8,39 @@ public class Coordinate{
 	 */
 	private final double latitude; //degrees
 	private final double longitude; //degrees
-	private static final int RADIUS_EARTH = 6371; //kilometers
+	private static final int RADIUS_EARTH = 6371; //kilometers 
 	
-	
+	/**
+	 * 
+	 * @param latitude
+	 * @param longitude
+	 */
 	public Coordinate(double latitude, double longitude){
 		this.latitude=latitude;
 		this.longitude= longitude;
 	}
-		
+	
+	/**
+	 * 
+	 * @return latitude
+	 */
 	public double getLatitude(){
 		return latitude;
 	}
 	
+	/**
+	 * 
+	 * @return longitude
+	 */
 	public double getLongitude(){
 		return longitude;
 	}
 	
+	/**
+	 * 
+	 * @param p2 Coordinate
+	 * @return returns distance in kilometers
+	 */
 	public double getDistance (Coordinate p2){
 		
 		if (this.equals(p2)){
@@ -46,6 +63,16 @@ public class Coordinate{
 		double distance = Coordinate.RADIUS_EARTH*delta_sigma;
 		return distance;
 		
+	}
+	/**
+	 * 
+	 * @param p2
+	 * @return right, if points have same coordinates
+	 */
+	public boolean equals(Coordinate p2){
+		if (Double.compare(this.longitude,p2.longitude) == 0 && Double.compare(this.latitude,p2.latitude)== 0){
+			return true;
+	} return false;
 	}
 }
 
