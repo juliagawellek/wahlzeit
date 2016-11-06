@@ -20,7 +20,10 @@
 package org.wahlzeit.services.mailing;
 
 import junit.framework.TestCase;
+
+import org.junit.BeforeClass;
 import org.wahlzeit.services.EmailAddress;
+import org.wahlzeit.main.ServiceMain;;
 
 /**
  *
@@ -31,13 +34,18 @@ public class EmailServiceTest extends TestCase {
 	 *
 	 */
 	protected EmailService emailService = null;
+	protected static ServiceMain instance = new ServiceMain();
 
 	/**
 	 *
 	 */
 	protected EmailAddress validAddress;
 
-
+	@BeforeClass public static void setIsInProduction(){
+		instance.setIsInProduction(false);
+		assertEquals(instance.isInProduction(), false);
+	}
+	
 	/**
 	 *
 	 */
