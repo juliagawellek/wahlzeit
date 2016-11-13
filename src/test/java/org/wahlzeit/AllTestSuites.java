@@ -7,11 +7,6 @@ import org.wahlzeit.model.ModelTestSuite;
 import org.wahlzeit.services.ServicesTestSuite;
 import org.wahlzeit.utils.UtilsTestSuite;
 
-import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
-import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
-
-
-
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({

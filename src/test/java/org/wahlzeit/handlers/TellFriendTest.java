@@ -26,7 +26,7 @@ import static org.junit.Assert.assertTrue;
  * Acceptance tests for the TellFriend feature.
  */
 public class TellFriendTest {
-
+	
 	@ClassRule
 	public static SysConfigProvider sysConfigProvider = new SysConfigProvider();
 	@ClassRule
