@@ -20,8 +20,5 @@ import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
 })
 
 public class AllTestSuites {
-
-	private final LocalServiceTestHelper helper =
-			new LocalServiceTestHelper(new LocalDatastoreServiceTestConfig()
-			    .setDefaultHighRepJobPolicyUnappliedJobPercentage(100));
+	
 }
