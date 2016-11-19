@@ -53,16 +53,19 @@ public class BridgePhotoFactory extends PhotoFactory{
 	/**
 	 * @methodtype factory
 	 */
-	public Photo createBridgePhoto() {
+	public BridgePhoto createBridgePhoto() {
 		return new BridgePhoto();
 	}
 	
 	/**
 	 * Creates a new photo with the specified id
 	 */
-	public Photo createBridgePhoto(PhotoId id) {
+	public BridgePhoto createBridgePhoto(PhotoId id) {
 		return new BridgePhoto(id);
 	}
 
+	public BridgePhoto createBridgePhoto(String name, String city, int length, int year){
+		return new BridgePhoto (name, city, length, year);
+	}
 
 }

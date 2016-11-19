@@ -23,8 +23,7 @@ public class BridgePhotoTest {
 	 */
 	@Test()
 	public void testPhotoAttributes(){
-		BridgePhoto bridge1 = new BridgePhoto();
-		bridge1.setBridgePhoto("Brooklyn Bridge", "New York", 1825, 1883);
+		BridgePhoto bridge1 = new BridgePhoto("Brooklyn Bridge", "New York", 1825, 1883);
 		String name = bridge1.getName();
 		assertEquals(name,"Brooklyn Bridge");
 		
