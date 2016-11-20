@@ -34,8 +34,8 @@ public class BridgePhotoTest {
 	 */
 	@Test()
 	public void testConstructor(){
-		BridgePhoto bridge1 = new BridgePhoto(new PhotoId(123));
 		int photoid = 123;
+		BridgePhoto bridge1 = new BridgePhoto(new PhotoId(photoid));
 		assertEquals(bridge1.getId().asInt(), photoid);
 	}
 

@@ -6,14 +6,13 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 
-
-
-public class CoordinateTest {
+public class SphericAndCartesianCoordinateTest {
 	
 	
-	private Coordinate Vancouver  = new Coordinate(49.11, -123.11);
-	private Coordinate Nuremberg = new Coordinate(49.29,11.04);
-
+	private SphericCoordinate Vancouver  = new SphericCoordinate(49.11, -123.11);
+	private SphericCoordinate Nuremberg = new SphericCoordinate(49.29,11.04);
+	private CartesianCoordinate p1 = new CartesianCoordinate(0.0, 0.0, 0.0);
+	private CartesianCoordinate p2 = new CartesianCoordinate (10.0, 15.0, 20.0);
 	
 	//testing if Vancouver is not null
 	@Test()
@@ -21,9 +20,14 @@ public class CoordinateTest {
 	assertNotNull(Vancouver);
 	}
 	
+	@Test()
+	public void testtype(){
+		assertEquals(Vancouver instanceof SphericCoordinate,true);
+	}
+	
 	//testing if distance is calculuted properly
 	@Test()
-	public void testGetDistance(){
+	public void testGetDistanceSpheric(){
 		double distance_hard = 8228;	
 		double distance_methode = Vancouver.getDistance(Nuremberg);
 		assertEquals(distance_hard, distance_methode,0.5);
@@ -53,9 +57,15 @@ public class CoordinateTest {
 		assertEquals(latitude_methode, latitude_hard, 0.1);
 	}
 	
+	@Test()
 	public void testGetLondigute(){
 		double longitude_method = Vancouver.getLongitude();
-		double longitude_hard = 123.11;
+		double longitude_hard = -123.11;
 		assertEquals(longitude_method, longitude_hard, 0.1);
+	}
+	
+	@Test()
+	public void testGetDistanceCartesian(){
+		assertEquals(p1.getDistance(p2), Math.sqrt(725),0.1);
 	}
 }
