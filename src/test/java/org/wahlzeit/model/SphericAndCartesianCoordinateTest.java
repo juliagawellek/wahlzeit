@@ -13,6 +13,7 @@ public class SphericAndCartesianCoordinateTest {
 	private SphericCoordinate Nuremberg = new SphericCoordinate(49.29,11.04);
 	private CartesianCoordinate p1 = new CartesianCoordinate(0.0, 0.0, 0.0);
 	private CartesianCoordinate p2 = new CartesianCoordinate (10.0, 15.0, 20.0);
+	private double radius = 6371.0; //kilometers 
 	
 	//testing if Vancouver is not null
 	@Test()
@@ -64,8 +65,37 @@ public class SphericAndCartesianCoordinateTest {
 		assertEquals(longitude_method, longitude_hard, 0.1);
 	}
 	
+	
+	@Test()
+	public void testCartesianConstructorAndGetters(){
+		CartesianCoordinate test = new CartesianCoordinate(1.0,2.0,3.0);
+		assertEquals(test.getX(),1.0, 0.0);
+		assertEquals(test.getY(),2.0, 0.0);
+		assertEquals(test.getZ(),3.0, 0.0);
+		
+	}
+	
 	@Test()
 	public void testGetDistanceCartesian(){
 		assertEquals(p1.getDistance(p2), Math.sqrt(725),0.1);
+	}
+	
+	@Test()
+	public void testTransformatinToCartesian(){
+		SphericCoordinate test = new SphericCoordinate (0.0,0.0);
+		CartesianCoordinate transfered=test.transferToCartesian();
+		//expected cartesian coordinates (radius,0.0,0.0);
+		assertEquals(transfered.getX(), radius,0.0);
+		assertEquals(transfered.getY(), 0.0,0.0);
+		assertEquals(transfered.getZ(), 0.0,0.0);
+	}
+	
+	@Test()
+	public void testTransformationToSpheric(){
+		CartesianCoordinate test = new CartesianCoordinate (radius,0.0,0.0);
+		SphericCoordinate transfered = test.transferToSpheric();
+		//expected spherical coordinates(0.0,0.0)
+		assertEquals(transfered.getLatitude(),0.0,0.0);
+		assertEquals(transfered.getLongitude(),0.0,0.0);
 	}
 }
