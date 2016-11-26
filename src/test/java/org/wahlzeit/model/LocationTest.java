@@ -14,7 +14,7 @@ public class LocationTest {
 	
 	@Test()
 	public void testConstructor(){
-		SphericCoordinate Nuremberg = new SphericCoordinate(49.29,11.04);
+		SphericCoordinate Nuremberg = new SphericCoordinate(49.29,11.04, 6371);
 		Location location = new Location (Nuremberg);
 		assertEquals(location.getCoordinate(), Nuremberg);
 	}

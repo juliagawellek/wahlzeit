@@ -7,7 +7,7 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({
 	AccessRightsTest.class,SphericAndCartesianCoordinateTest.class, FlagReasonTest.class, GenderTest.class, GuestTest.class, LocationTest.class,
 	PhotoFilterTest.class,TagsTest.class, UserStatusTest.class, ValueTest.class,
-	BridgePhotoTest.class, BridgePhotoManagerTest.class, BridgePhotoFactoryTest.class,
+	BridgePhotoTest.class, BridgePhotoManagerTest.class, BridgePhotoFactoryTest.class, AbstractCoordinateTest.class
 })
 
 public class ModelTestSuite {
