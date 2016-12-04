@@ -29,7 +29,7 @@ public class SphericAndCartesianCoordinateTest {
 	//testing if distance is calculuted properly
 	@Test()
 	public void testGetDistanceSpheric(){
-		double distance_hard = 8228;	
+		double distance_hard = 7668;	
 		double distance_methode = Vancouver.getDistance(Nuremberg);
 		assertEquals(distance_hard, distance_methode,0.5);
 		
@@ -90,4 +90,20 @@ public class SphericAndCartesianCoordinateTest {
 		assertEquals(transfered.getZ(), 0.0,0.0);
 	}
 
+	@Test (expected = IllegalArgumentException.class)
+	public void testpreconditionspherical (){
+		SphericCoordinate fail1 = new SphericCoordinate (-100, 21,10);
+		SphericCoordinate fail2 = new SphericCoordinate (21, 200, 23);
+		SphericCoordinate fail3 = new SphericCoordinate (87,20,-1);
+	}
+	
+	@ Test(expected = IllegalArgumentException.class)
+	public void getDistancePreCon(){
+		double distance = Vancouver.getDistance(null);
+	}
+	
+	@Test (expected = IllegalArgumentException.class)
+	public void isEqualPreCon(){
+		boolean fail = Vancouver.isEqual(null);
+	}
 }

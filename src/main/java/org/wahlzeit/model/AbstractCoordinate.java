@@ -9,9 +9,7 @@ public abstract class AbstractCoordinate implements Coordinate {
 
 	@Override
 	public double getDistance (Coordinate coord){
-		if (coord == null){
-			throw new IllegalArgumentException("Coordinate is null!");
-		}
+		assertCoordinateNotNull(coord);
 		return doGetDistance(coord);
 	}
 	
@@ -21,11 +19,27 @@ public abstract class AbstractCoordinate implements Coordinate {
 		double delta_y = this.asCartesianY()-coord.asCartesianY();
 		double delta_z = this.asCartesianZ()-coord.asCartesianZ();
 		
-		return Math.sqrt(delta_x*delta_x + delta_y*delta_y + delta_z*delta_z);
+		double distance = Math.sqrt(delta_x*delta_x + delta_y*delta_y + delta_z*delta_z);
+		assertValidDistance(distance);
+		return distance;
+		
 	}
 	
 	@Override
 	public boolean isEqual(Coordinate coord){
-		return this.getDistance(coord) < 1e-7;
+		assertCoordinateNotNull(coord);
+		return this.getDistance(coord) < 1e-6;
+	}
+	
+	protected void assertCoordinateNotNull(Coordinate coord) throws IllegalArgumentException {
+		if (coord == null){
+			throw new IllegalArgumentException("Coordinate is null!");
+		}
+	}
+	
+	protected void assertValidDistance (double distance)throws IllegalArgumentException{
+		if (distance < 0){
+			throw new IllegalArgumentException ("Distance must be positive!");
+		}
 	}
 }
