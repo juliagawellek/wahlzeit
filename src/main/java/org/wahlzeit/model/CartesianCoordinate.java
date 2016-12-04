@@ -2,9 +2,9 @@ package org.wahlzeit.model;
 
 public class CartesianCoordinate extends AbstractCoordinate{
 	
-	private final double x;
-	private final double y;
-	private final double z;
+	private double x;
+	private double y;
+	private double z;
 	
 	/**
 	 * constructor
@@ -41,10 +41,20 @@ public class CartesianCoordinate extends AbstractCoordinate{
 	public double getZ() {
 		return z;
 	}
-	
+
 	@Override
-	public CartesianCoordinate transferToCartesian(){
-		return this;
+	public double asCartesianX() {
+		return getX();
+	}
+
+	@Override
+	public double asCartesianY() {
+		return getY();
+	}
+
+	@Override
+	public double asCartesianZ() {
+		return getZ();
 	}
 	
 }

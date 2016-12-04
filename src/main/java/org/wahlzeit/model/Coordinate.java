@@ -21,9 +21,20 @@ public interface Coordinate{
 	
 	/**
 	 * 
-	 * @param 
-	 * @return cartesian representation of a spheric coordinate
+	 * @return x-component of cartesian coordinate
 	 */
-	public CartesianCoordinate transferToCartesian ();
+	public double asCartesianX();
+	
+	/**
+	 * 
+	 * @return y-component of cartesian coordinate
+	 */
+	public double asCartesianY();
+	
+	/**
+	 * 
+	 * @return z-component of cartesian coordinate
+	 */
+	public double asCartesianZ();
 
 }

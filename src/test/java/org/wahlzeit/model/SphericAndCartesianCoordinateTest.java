@@ -83,7 +83,7 @@ public class SphericAndCartesianCoordinateTest {
 	@Test()
 	public void testTransformatinToCartesian(){
 		SphericCoordinate test = new SphericCoordinate (0.0,0.0, radius);
-		CartesianCoordinate transfered=test.transferToCartesian();
+		CartesianCoordinate transfered = new CartesianCoordinate (test.asCartesianX(), test.asCartesianY(), test.asCartesianZ());
 		//expected cartesian coordinates (radius,0.0,0.0);
 		assertEquals(transfered.getX(), radius,0.0);
 		assertEquals(transfered.getY(), 0.0,0.0);

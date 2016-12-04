@@ -21,8 +21,6 @@ public class AbstractCoordinateTest {
 		
 		//2 spherical coords
 		double distance2 = sp1.getDistance(sp2);
-		sp1.transferToCartesian();
-		sp2.transferToCartesian();
 		double distance3 = sp1.getDistance(sp2);
 		assertEquals(distance2, distance3, 0.1);
 		

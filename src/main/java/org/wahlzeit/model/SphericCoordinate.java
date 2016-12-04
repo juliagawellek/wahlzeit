@@ -3,9 +3,9 @@ package org.wahlzeit.model;
 
 public class SphericCoordinate extends AbstractCoordinate{
 
-	private final double latitude; //degrees
-	private final double longitude; //degrees
-	private final double radius; //kilometers
+	private double latitude; //degrees
+	private double longitude; //degrees
+	private double radius; //kilometers
 
 	/**
 	 * 
@@ -48,11 +48,21 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @return Cartesian Coordinate: https://de.wikipedia.org/wiki/Kugelkoordinaten#Andere_Konventionen
 	 */
 	@Override
-	public CartesianCoordinate transferToCartesian(){
+	public double asCartesianX() {
 		double x = radius*Math.cos(Math.toRadians(getLatitude()))*(Math.cos(Math.toRadians(getLongitude())));
+		return x;
+	}
+
+	@Override
+	public double asCartesianY() {
 		double y = radius*Math.cos(Math.toRadians(getLatitude()))*(Math.sin(Math.toRadians(getLongitude())));
+		return y;
+	}
+
+	@Override
+	public double asCartesianZ() {
 		double z = radius*Math.sin(Math.toRadians(getLatitude()));
-		return new CartesianCoordinate (x,y,z);
+		return z;
 	}
 	
 }
