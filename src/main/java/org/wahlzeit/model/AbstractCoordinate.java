@@ -10,7 +10,9 @@ public abstract class AbstractCoordinate implements Coordinate {
 	@Override
 	public double getDistance (Coordinate coord){
 		assertCoordinateNotNull(coord);
-		return doGetDistance(coord);
+		double distance = doGetDistance(coord);
+		assertValidDistance(distance);
+		return distance;
 	}
 	
 	protected double doGetDistance(Coordinate coord){
@@ -20,7 +22,6 @@ public abstract class AbstractCoordinate implements Coordinate {
 		double delta_z = this.asCartesianZ()-coord.asCartesianZ();
 		
 		double distance = Math.sqrt(delta_x*delta_x + delta_y*delta_y + delta_z*delta_z);
-		assertValidDistance(distance);
 		return distance;
 		
 	}

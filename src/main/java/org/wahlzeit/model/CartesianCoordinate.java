@@ -41,6 +41,30 @@ public class CartesianCoordinate extends AbstractCoordinate{
 	public double getZ() {
 		return z;
 	}
+	
+	/**
+	 * 
+	 * @param x
+	 */
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	/**
+	 * 
+	 * @param y
+	 */
+	public void setY(double y) {
+		this.y = y;
+	}
+
+	/**
+	 * 
+	 * @param z
+	 */
+	public void setZ(double z) {
+		this.z = z;
+	}
 
 	@Override
 	public double asCartesianX() {

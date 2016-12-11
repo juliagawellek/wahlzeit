@@ -93,6 +93,33 @@ public class SphericCoordinate extends AbstractCoordinate{
 	
 	/**
 	 * 
+	 * @param latitude
+	 */
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+		assertIsValidLatitude(latitude);
+	}
+
+	/**
+	 * 
+	 * @param longitude
+	 */
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+		assertIsValidLongitude(longitude);
+	}
+
+	/**
+	 * 
+	 * @param radius
+	 */
+	public void setRadius(double radius) {
+		this.radius = radius;
+		assertIsValidRadius(radius);
+	}
+
+	/**
+	 * 
 	 * @return Cartesian Coordinate: https://de.wikipedia.org/wiki/Kugelkoordinaten#Andere_Konventionen
 	 */
 	@Override
