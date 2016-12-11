@@ -2,18 +2,32 @@ package org.wahlzeit.model;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class AbstractCoordinateTest {
 	
-	private SphericCoordinate sp1 = new SphericCoordinate(1, 2, 3);
-	private SphericCoordinate sp2 = new SphericCoordinate(4, 5, 6);
-	private CartesianCoordinate sp2_cart = new CartesianCoordinate (5.962608107254586, 0.5216606144325431, 0.4185388424647518); //sp2 in cart
-	private CartesianCoordinate ca1 = new CartesianCoordinate (0,0,0);
-	private CartesianCoordinate ca2 = new CartesianCoordinate (2,4,6);
+	private SphericCoordinate sp1;
+	private SphericCoordinate sp2;
+	private CartesianCoordinate sp2_cart; //sp2 in cart
+	private CartesianCoordinate ca1;
+	private CartesianCoordinate ca2;
+	
+	@Before
+	public void setUp(){
+		try{
+			sp1 = new SphericCoordinate(1, 2, 3);
+			sp2 = new SphericCoordinate(4, 5, 6);
+			sp2_cart = new CartesianCoordinate (5.962608107254586, 0.5216606144325431, 0.4185388424647518); //sp2 in cart
+			ca1 = new CartesianCoordinate (0,0,0);
+			ca2 = new CartesianCoordinate (2,4,6);
+		} catch (CoordinateException c){
+			c.printStackTrace();
+		}
+	}
 	
 	@Test()
-	public void testGetDistance(){
+	public void testGetDistance() throws CoordinateException{
 		//2 cartesian coords
 		double distance1 = ca1.getDistance(ca2);
 		double actualDistance1 = Math.sqrt(Math.pow((2-0), 2)+ Math.pow((4-0), 2) + Math.pow((6-0), 2));
@@ -31,7 +45,7 @@ public class AbstractCoordinateTest {
 	}
 	
 	@Test()
-	public void testIsEqual() {
+	public void testIsEqual() throws CoordinateException {
 		//Spheric
 		  SphericCoordinate sp = new SphericCoordinate(1, 2, 3);
 		  boolean compare_true = sp.isEqual(sp1);

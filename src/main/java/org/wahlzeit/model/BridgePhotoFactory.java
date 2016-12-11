@@ -61,6 +61,9 @@ public class BridgePhotoFactory extends PhotoFactory{
 	 * Creates a new photo with the specified id
 	 */
 	public BridgePhoto createBridgePhoto(PhotoId id) {
+		if (id == null){
+			throw new IllegalArgumentException ("id must not be null!");
+		}
 		return new BridgePhoto(id);
 	}
 

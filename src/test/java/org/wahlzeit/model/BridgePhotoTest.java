@@ -39,4 +39,9 @@ public class BridgePhotoTest {
 		assertEquals(bridge1.getId().asInt(), photoid);
 	}
 
+	@Test (expected = IllegalArgumentException.class)
+	public void testSetLength(){
+		BridgePhoto bridge1 = new BridgePhoto(new PhotoId(007));
+		bridge1.setLength(-100);
+	}
 }

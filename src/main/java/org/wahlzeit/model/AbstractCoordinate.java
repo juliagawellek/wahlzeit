@@ -1,4 +1,5 @@
 package org.wahlzeit.model;
+import org.wahlzeit.model.CoordinateException;
 
 /**
  * 
@@ -7,8 +8,11 @@ package org.wahlzeit.model;
  */
 public abstract class AbstractCoordinate implements Coordinate {
 
+	AbstractCoordinate()throws CoordinateException {
+	}
+	
 	@Override
-	public double getDistance (Coordinate coord){
+	public double getDistance (Coordinate coord)throws CoordinateException{
 		assertCoordinateNotNull(coord);
 		double distance = doGetDistance(coord);
 		assertValidDistance(distance);
@@ -27,20 +31,20 @@ public abstract class AbstractCoordinate implements Coordinate {
 	}
 	
 	@Override
-	public boolean isEqual(Coordinate coord){
+	public boolean isEqual(Coordinate coord) throws CoordinateException{
 		assertCoordinateNotNull(coord);
 		return this.getDistance(coord) < 1e-6;
 	}
 	
-	protected void assertCoordinateNotNull(Coordinate coord) throws IllegalArgumentException {
+	protected void assertCoordinateNotNull(Coordinate coord) throws CoordinateException {
 		if (coord == null){
-			throw new IllegalArgumentException("Coordinate is null!");
+			throw new CoordinateException("Coordinate is null!");
 		}
 	}
 	
-	protected void assertValidDistance (double distance)throws IllegalArgumentException{
+	protected void assertValidDistance (double distance)throws CoordinateException{
 		if (distance < 0){
-			throw new IllegalArgumentException ("Distance must be positive!");
+			throw new CoordinateException ("Distance must be positive!");
 		}
 	}
 }

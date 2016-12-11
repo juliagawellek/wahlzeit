@@ -1,4 +1,6 @@
 package org.wahlzeit.model;
+import org.wahlzeit.model.CoordinateException;
+
 
 
 public class SphericCoordinate extends AbstractCoordinate{
@@ -6,18 +8,18 @@ public class SphericCoordinate extends AbstractCoordinate{
 	private double latitude; //degrees
 	private double longitude; //degrees
 	private double radius; //kilometers
-
+	
 	/**
 	 * 
 	 * @param latitude
 	 * @param longitude
 	 * @param radius
 	 */
-	public SphericCoordinate(double latitude, double longitude, double radius){
+	public SphericCoordinate(double latitude, double longitude, double radius)throws CoordinateException{
+
 		assertIsValidLatitude(latitude);
 		assertIsValidLongitude(longitude);
-		assertIsValidRadius(radius);
-		
+		assertIsValidRadius(radius);	
 		this.latitude=latitude;
 		this.longitude= longitude;
 		this.radius = radius;
@@ -28,22 +30,22 @@ public class SphericCoordinate extends AbstractCoordinate{
 	/**
 	 * asserts whether latitude is valid
 	 * @param latitude
-	 * @throws IllegalArgumentException if latitude not between -90 and 90 degrees
+	 * @throws throws CoordinateException if latitude not between -90 and 90 degrees
 	 */
-	private void assertIsValidLatitude(double latitude)throws IllegalArgumentException {
+	private void assertIsValidLatitude(double latitude) throws CoordinateException {
 		if (latitude < -90 || latitude > 90){
-			throw new IllegalArgumentException ("Latitude must be between -90 and 90 degrees!");
+			throw new CoordinateException ("Latitude must be between -90 and 90 degrees!");
 		}
 	}
 	
 	/**
 	 * asserts whether longitude is valid
 	 * @param longitude
-	 * @throws IllegalArgumentException if longitude not between -180 and 180 degrees
+	 * @throws throws CoordinateException if longitude not between -180 and 180 degrees
 	 */
-	private void assertIsValidLongitude(double longitude) throws IllegalArgumentException {
+	private void assertIsValidLongitude(double longitude) throws CoordinateException {
 		if (longitude < -180 || longitude > 180){
-			throw new IllegalArgumentException ("Longitude must be between -180 and 180 degrees!");
+			throw new CoordinateException ("Longitude must be between -180 and 180 degrees!");
 		}
 		
 	}
@@ -51,18 +53,18 @@ public class SphericCoordinate extends AbstractCoordinate{
 	/**
 	 * asserts whether longitude is valid
 	 * @param radius
-	 * @throws IllegalArgumentException
+	 * @throws CoordinateException
 	 */
-	private void assertIsValidRadius(double radius) throws IllegalArgumentException {
+	private void assertIsValidRadius(double radius) throws CoordinateException {
 		if (radius <= 0){
-			throw new IllegalArgumentException ("Radius must not not be negative or zero!");
+			throw new CoordinateException ("Radius must not not be negative or zero!");
 		}	
 	}
 	
 	/**
 	 * asserts class invariants (condition that is true for any valid object)
 	 */
-	private void assertClassInvariant() {
+	private void assertClassInvariant() throws CoordinateException{
 		assertIsValidLatitude(latitude);
 		assertIsValidLongitude(longitude);
 		assertIsValidRadius(radius);
@@ -95,7 +97,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * 
 	 * @param latitude
 	 */
-	public void setLatitude(double latitude) {
+	public void setLatitude(double latitude)throws CoordinateException {
 		this.latitude = latitude;
 		assertIsValidLatitude(latitude);
 	}
@@ -104,7 +106,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * 
 	 * @param longitude
 	 */
-	public void setLongitude(double longitude) {
+	public void setLongitude(double longitude) throws CoordinateException{
 		this.longitude = longitude;
 		assertIsValidLongitude(longitude);
 	}
@@ -113,7 +115,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * 
 	 * @param radius
 	 */
-	public void setRadius(double radius) {
+	public void setRadius(double radius)throws CoordinateException {
 		this.radius = radius;
 		assertIsValidRadius(radius);
 	}

@@ -1,4 +1,5 @@
 package org.wahlzeit.model;
+import org.wahlzeit.model.CoordinateException;
 
 public class Location{
 	
@@ -11,9 +12,9 @@ public class Location{
 	 * 
 	 * @param coordinate
 	 */
-	public Location (Coordinate coordinate){
+	public Location (Coordinate coordinate) throws CoordinateException{
 		if (coordinate == null){
-			throw new IllegalArgumentException("Coordinate is null!");
+			throw new CoordinateException("Coordinate is null!");
 		}
 		this.coordinate = coordinate;
 	}
