@@ -16,11 +16,11 @@ public class AbstractCoordinateTest {
 	@Before
 	public void setUp(){
 		try{
-			sp1 = new SphericCoordinate(1, 2, 3);
-			sp2 = new SphericCoordinate(4, 5, 6);
-			sp2_cart = new CartesianCoordinate (5.962608107254586, 0.5216606144325431, 0.4185388424647518); //sp2 in cart
-			ca1 = new CartesianCoordinate (0,0,0);
-			ca2 = new CartesianCoordinate (2,4,6);
+			sp1 = SphericCoordinate.getInstance(1, 2, 3);
+			sp2 = SphericCoordinate.getInstance(4, 5, 6);
+			sp2_cart = CartesianCoordinate.getInstance(5.962608107254586, 0.5216606144325431, 0.4185388424647518); //sp2 in cart
+			ca1 = CartesianCoordinate.getInstance (0,0,0);
+			ca2 =  CartesianCoordinate.getInstance (2,4,6);
 		} catch (CoordinateException c){
 			c.printStackTrace();
 		}
@@ -44,17 +44,18 @@ public class AbstractCoordinateTest {
 		
 	}
 	
+	
 	@Test()
 	public void testIsEqual() throws CoordinateException {
 		//Spheric
-		  SphericCoordinate sp = new SphericCoordinate(1, 2, 3);
+		  SphericCoordinate sp = SphericCoordinate.getInstance(1, 2, 3);
 		  boolean compare_true = sp.isEqual(sp1);
 		  boolean compare_false = sp1.isEqual(sp2);
 		  assertEquals(compare_true, true);
 		  assertEquals(compare_false, false);
 		  
 		  //cartesian
-		  CartesianCoordinate ca = new CartesianCoordinate (2,4,6);
+		  CartesianCoordinate ca = CartesianCoordinate.getInstance (2,4,6);
 		  boolean cart_comp_true = ca.isEqual(ca2);
 		  boolean cart_comp_false = ca1.isEqual(ca2);
 		  assertEquals(cart_comp_true, true);

@@ -1,10 +1,14 @@
 package org.wahlzeit.model;
 
+import java.util.HashMap;
+
 public class CartesianCoordinate extends AbstractCoordinate{
 	
-	private double x;
-	private double y;
-	private double z;
+	private final double x;
+	private final double y;
+	private final double z;
+	
+	private static HashMap<Integer, CartesianCoordinate> cartesianInstances = new HashMap<>();
 	
 	/**
 	 * constructor
@@ -12,7 +16,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
 	 * @param y
 	 * @param z
 	 */
-	public CartesianCoordinate (double x, double y, double z) throws CoordinateException{
+	private CartesianCoordinate (double x, double y, double z) throws CoordinateException{
 		try{
 		assertIsValidX(x);
 		assertIsValidY(y);
@@ -25,6 +29,26 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		this.z=z;
 		
 		assertClassInvariants();
+	}
+	
+	/**
+	 * returns cartesian coords with given values.
+	 * If instance with given values does not exist, it is inserted into the hashmap and is returned
+	 * 
+	 * @param x
+	 * @param y
+	 * @param z
+	 * @return
+	 * @throws CoordinateException
+	 */
+	public static CartesianCoordinate getInstance (double x, double y, double z) throws CoordinateException{
+		CartesianCoordinate cartCoord = new CartesianCoordinate (x,y,z);
+		synchronized (cartesianInstances){
+			if (!cartesianInstances.containsValue(cartCoord)){
+				cartesianInstances.put(cartCoord.hashCode(), cartCoord);
+			}
+			return cartesianInstances.get(cartCoord);
+		}
 	}
 	
 	/**
@@ -51,36 +75,6 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		return z;
 	}
 	
-	/**
-	 * 
-	 * @param x
-	 * @throws CoordinateException 
-	 */
-	public void setX(double x) throws CoordinateException {
-		assertIsValidX(x);
-		this.x = x;
-	}
-
-	/**
-	 * 
-	 * @param y
-	 * @throws CoordinateException 
-	 */
-	public void setY(double y) throws CoordinateException {
-		assertIsValidX(y);
-		this.y = y;
-	}
-
-	/**
-	 * 
-	 * @param z
-	 * @throws CoordinateException 
-	 */
-	public void setZ(double z) throws CoordinateException {
-		assertIsValidX(z);
-		this.z = z;
-	}
-
 	/**
 	 * assserts whether x is NaN
 	 * @param x

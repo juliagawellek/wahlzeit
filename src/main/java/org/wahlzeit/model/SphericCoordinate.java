@@ -1,13 +1,15 @@
 package org.wahlzeit.model;
+
 import org.wahlzeit.model.CoordinateException;
-
-
+import java.util.HashMap;
 
 public class SphericCoordinate extends AbstractCoordinate{
 
-	private double latitude; //degrees
-	private double longitude; //degrees
-	private double radius; //kilometers
+	private final double latitude; //degrees
+	private final double longitude; //degrees
+	private final double radius; //kilometers
+
+	private static HashMap<Integer, SphericCoordinate> sphericInstances = new HashMap<>();
 	
 	/**
 	 * 
@@ -15,7 +17,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @param longitude
 	 * @param radius
 	 */
-	public SphericCoordinate(double latitude, double longitude, double radius)throws CoordinateException{
+	private SphericCoordinate(double latitude, double longitude, double radius)throws CoordinateException{
 		try{
 		assertIsValidLatitude(latitude);
 		assertIsValidLongitude(longitude);
@@ -29,7 +31,27 @@ public class SphericCoordinate extends AbstractCoordinate{
 		
 		assertClassInvariant();
 	}
-
+	
+	/**
+	 * returns spheric coords with given values.
+	 * If instance with given values does not exist, it is inserted into the hashmap and is returned
+	 * 
+	 * @param latitude
+	 * @param longitude
+	 * @param radius
+	 * @return SphericCoordinate
+	 * @throws CoordinateException
+	 */
+	public static SphericCoordinate getInstance (double latitude, double longitude, double radius) throws CoordinateException{
+		SphericCoordinate sphericCoord = new SphericCoordinate (latitude,longitude,radius);
+		synchronized (sphericInstances){
+			if (!sphericInstances.containsValue(sphericCoord)){
+				sphericInstances.put(sphericCoord.hashCode(), sphericCoord);
+			}
+			return sphericInstances.get(sphericCoord);
+		}
+	}
+	
 	/**
 	 * asserts whether latitude is valid
 	 * @param latitude
@@ -96,33 +118,6 @@ public class SphericCoordinate extends AbstractCoordinate{
 		return radius;
 	}
 	
-	/**
-	 * 
-	 * @param latitude
-	 */
-	public void setLatitude(double latitude)throws CoordinateException {
-		this.latitude = latitude;
-		assertIsValidLatitude(latitude);
-	}
-
-	/**
-	 * 
-	 * @param longitude
-	 */
-	public void setLongitude(double longitude) throws CoordinateException{
-		this.longitude = longitude;
-		assertIsValidLongitude(longitude);
-	}
-
-	/**
-	 * 
-	 * @param radius
-	 */
-	public void setRadius(double radius)throws CoordinateException {
-		this.radius = radius;
-		assertIsValidRadius(radius);
-	}
-
 	/**
 	 * 
 	 * @return Cartesian Coordinate: https://de.wikipedia.org/wiki/Kugelkoordinaten#Andere_Konventionen

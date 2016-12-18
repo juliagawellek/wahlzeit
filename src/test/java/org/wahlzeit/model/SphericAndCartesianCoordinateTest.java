@@ -20,11 +20,11 @@ public class SphericAndCartesianCoordinateTest {
 @Before
 	public void setUp(){
 		try {
-			vancouver = new SphericCoordinate(49.11, -123.11, radius);
-			nuremberg = new SphericCoordinate(49.29,11.04, radius);
-			p1 = new CartesianCoordinate(0.0, 0.0, 0.0);
-			p2 = new CartesianCoordinate (10.0, 15.0, 20.0);
-			test = new CartesianCoordinate(1.0,2.0,3.0);
+			vancouver = SphericCoordinate.getInstance(49.11, -123.11, radius);
+			nuremberg = SphericCoordinate.getInstance(49.29,11.04, radius);
+			p1 = CartesianCoordinate.getInstance(0.0, 0.0, 0.0);
+			p2 = CartesianCoordinate.getInstance (10.0, 15.0, 20.0);
+			test = CartesianCoordinate.getInstance(1.0,2.0,3.0);
 			} catch (CoordinateException c) {
 			c.printStackTrace();
 		}
@@ -97,8 +97,8 @@ public class SphericAndCartesianCoordinateTest {
 	
 	@Test()
 	public void testTransformatinToCartesian() throws CoordinateException{
-		SphericCoordinate test = new SphericCoordinate (0.0,0.0, radius);
-		CartesianCoordinate transfered = new CartesianCoordinate (test.asCartesianX(), test.asCartesianY(), test.asCartesianZ());
+		SphericCoordinate test = SphericCoordinate.getInstance (0.0,0.0, radius);
+		CartesianCoordinate transfered = CartesianCoordinate.getInstance (test.asCartesianX(), test.asCartesianY(), test.asCartesianZ());
 		//expected cartesian coordinates (radius,0.0,0.0);
 		assertEquals(transfered.getX(), radius,0.0);
 		assertEquals(transfered.getY(), 0.0,0.0);
@@ -107,9 +107,9 @@ public class SphericAndCartesianCoordinateTest {
 
 	@Test (expected = CoordinateException.class)
 	public void testpreconditionspherical () throws CoordinateException{
-		SphericCoordinate fail1 = new SphericCoordinate (-100, 21,10);
-		SphericCoordinate fail2 = new SphericCoordinate (21, 200, 23);
-		SphericCoordinate fail3 = new SphericCoordinate (87,20,-1);
+		SphericCoordinate fail1 = SphericCoordinate.getInstance (-100, 21,10);
+		SphericCoordinate fail2 = SphericCoordinate.getInstance (21, 200, 23);
+		SphericCoordinate fail3 = SphericCoordinate.getInstance (87,20,-1);
 	}
 	
 	@ Test (expected = CoordinateException.class)

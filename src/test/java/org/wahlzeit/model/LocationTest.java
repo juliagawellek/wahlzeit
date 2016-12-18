@@ -14,7 +14,7 @@ public class LocationTest {
 	@Before
 	public void setUp(){
 		try{
-			nuremberg = new SphericCoordinate(49.29,11.04, 6371);
+			nuremberg = SphericCoordinate.getInstance(49.29,11.04, 6371);
 			location = new Location (nuremberg);
 		} catch (CoordinateException c) {
 			c.printStackTrace();
@@ -22,12 +22,8 @@ public class LocationTest {
 	}
 	//exception handling test
 	@Test (expected = CoordinateException.class)
-	public void testConstructor1() throws CoordinateException{
+	public void testConstructor() throws CoordinateException{
 		new Location(null);
 	}
 	
-	@Test()
-	public void testConstructor(){
-		assertEquals(location.getCoordinate(), nuremberg);
-	}
 }

@@ -47,4 +47,36 @@ public abstract class AbstractCoordinate implements Coordinate {
 			throw new CoordinateException ("Distance must be positive!");
 		}
 	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(asCartesianX());
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(asCartesianY());
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(asCartesianZ());
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Coordinate other = (Coordinate) obj;
+		if (Double.doubleToLongBits(asCartesianX()) != Double.doubleToLongBits(other.asCartesianX()))
+			return false;
+		if (Double.doubleToLongBits(asCartesianY()) != Double.doubleToLongBits(other.asCartesianY()))
+			return false;
+		if (Double.doubleToLongBits(asCartesianZ()) != Double.doubleToLongBits(other.asCartesianZ()))
+			return false;
+		return true;
+	}
 }
