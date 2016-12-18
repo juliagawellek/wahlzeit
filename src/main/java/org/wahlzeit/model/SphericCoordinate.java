@@ -16,10 +16,13 @@ public class SphericCoordinate extends AbstractCoordinate{
 	 * @param radius
 	 */
 	public SphericCoordinate(double latitude, double longitude, double radius)throws CoordinateException{
-
+		try{
 		assertIsValidLatitude(latitude);
 		assertIsValidLongitude(longitude);
-		assertIsValidRadius(radius);	
+		assertIsValidRadius(radius);
+		} catch (CoordinateException c){
+			throw new CoordinateException("SphericCoordinate cannot be instanciated", c);
+		}
 		this.latitude=latitude;
 		this.longitude= longitude;
 		this.radius = radius;

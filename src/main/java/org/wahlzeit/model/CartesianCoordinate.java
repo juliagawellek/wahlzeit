@@ -18,13 +18,13 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		assertIsValidY(y);
 		assertIsValidZ(z);
 		} catch (CoordinateException c){
-			throw new CoordinateException("CartesianCoordinate cannot be instanciated");
+			throw new CoordinateException("CartesianCoordinate cannot be instanciated", c);
 		}
 		this.x=x;
 		this.y=y;
 		this.z=z;
 		
-		//assertClassInvariants();
+		assertClassInvariants();
 	}
 	
 	/**
@@ -120,8 +120,8 @@ public class CartesianCoordinate extends AbstractCoordinate{
 	 */
 	private void assertClassInvariants() throws CoordinateException{
 		assertIsValidX(x);
-		assertIsValidX(y);
-		assertIsValidX(z);
+		assertIsValidY(y);
+		assertIsValidZ(z);
 	}
 	@Override
 	public double asCartesianX() {
