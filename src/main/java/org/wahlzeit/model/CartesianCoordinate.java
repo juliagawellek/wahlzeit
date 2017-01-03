@@ -8,7 +8,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
 	private final double y;
 	private final double z;
 	
-	private static HashMap<Integer, CartesianCoordinate> cartesianInstances = new HashMap<>();
+	private static HashMap<CartesianCoordinate, CartesianCoordinate> cartesianInstances = new HashMap<>();
 	
 	/**
 	 * constructor
@@ -45,7 +45,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
 		CartesianCoordinate cartCoord = new CartesianCoordinate (x,y,z);
 		synchronized (cartesianInstances){
 			if (!cartesianInstances.containsValue(cartCoord)){
-				cartesianInstances.put(cartCoord.hashCode(), cartCoord);
+				cartesianInstances.put(cartCoord, cartCoord);
 			}
 			return cartesianInstances.get(cartCoord);
 		}
@@ -130,6 +130,38 @@ public class CartesianCoordinate extends AbstractCoordinate{
 	@Override
 	public double asCartesianZ() {
 		return getZ();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		long temp;
+		temp = Double.doubleToLongBits(x);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(y);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(z);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CartesianCoordinate other = (CartesianCoordinate) obj;
+		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
+			return false;
+		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))
+			return false;
+		if (Double.doubleToLongBits(z) != Double.doubleToLongBits(other.z))
+			return false;
+		return true;
 	}
 	
 }

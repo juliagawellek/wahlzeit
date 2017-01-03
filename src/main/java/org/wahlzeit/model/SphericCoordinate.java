@@ -9,7 +9,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 	private final double longitude; //degrees
 	private final double radius; //kilometers
 
-	private static HashMap<Integer, SphericCoordinate> sphericInstances = new HashMap<>();
+	private static HashMap<SphericCoordinate, SphericCoordinate> sphericInstances = new HashMap<>();
 	
 	/**
 	 * 
@@ -46,7 +46,7 @@ public class SphericCoordinate extends AbstractCoordinate{
 		SphericCoordinate sphericCoord = new SphericCoordinate (latitude,longitude,radius);
 		synchronized (sphericInstances){
 			if (!sphericInstances.containsValue(sphericCoord)){
-				sphericInstances.put(sphericCoord.hashCode(), sphericCoord);
+				sphericInstances.put(sphericCoord, sphericCoord);
 			}
 			return sphericInstances.get(sphericCoord);
 		}
@@ -139,6 +139,39 @@ public class SphericCoordinate extends AbstractCoordinate{
 		double z = radius*Math.sin(Math.toRadians(getLatitude()));
 		return z;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(latitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(longitude);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(radius);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SphericCoordinate other = (SphericCoordinate) obj;
+		if (Double.doubleToLongBits(latitude) != Double.doubleToLongBits(other.latitude))
+			return false;
+		if (Double.doubleToLongBits(longitude) != Double.doubleToLongBits(other.longitude))
+			return false;
+		if (Double.doubleToLongBits(radius) != Double.doubleToLongBits(other.radius))
+			return false;
+		return true;
+	}
+	
 	
 }
 
