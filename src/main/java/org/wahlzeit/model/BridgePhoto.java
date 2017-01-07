@@ -1,5 +1,7 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 import com.googlecode.objectify.annotation.Subclass;
 
 /**
@@ -7,6 +9,12 @@ import com.googlecode.objectify.annotation.Subclass;
  * BridgePhoto is a subclass of Photo, in which attributes of the bridge depicted in the picture are set
  *
  */
+
+@PatternInstance(
+		patternName = {"AbstractFactory"},
+		participants = {"ConcreteProduct"}
+		
+)
 
 @Subclass
 public class BridgePhoto extends Photo{

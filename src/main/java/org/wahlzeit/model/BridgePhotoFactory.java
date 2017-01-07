@@ -3,12 +3,13 @@ package org.wahlzeit.model;
 import java.util.logging.Logger;
 
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
-/**
- * 
- * Class for for creating bridge-photos and related objects.
- *
- */
+@PatternInstance(
+		patternName = {"AbstractFactory", "Singleton"},
+		participants = {"ConcreteFactory", "Singleton"
+		}
+)
 
 public class BridgePhotoFactory extends PhotoFactory{
 	

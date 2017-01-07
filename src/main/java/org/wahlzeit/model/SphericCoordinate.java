@@ -1,7 +1,15 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.model.CoordinateException;
+import org.wahlzeit.utils.PatternInstance;
+
 import java.util.HashMap;
+
+@PatternInstance(
+		patternName = "Value Object",
+		participants = {"Value Object"
+		}
+)
 
 public class SphericCoordinate extends AbstractCoordinate{
 
