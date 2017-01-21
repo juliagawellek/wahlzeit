@@ -18,30 +18,12 @@ public class BridgePhotoTest {
 			outerRule(new LocalDatastoreServiceTestConfigProvider()).
 			around(new RegisteredOfyEnvironmentProvider());
 	
-	/**
-	 * testing setter and getter
-	 */
-	@Test()
-	public void testPhotoAttributes(){
-		BridgePhoto bridge1 = new BridgePhoto("Brooklyn Bridge", "New York", 1825, 1883);
-		String name = bridge1.getName();
-		assertEquals(name,"Brooklyn Bridge");
-		
-	}
-	
-	/**
-	 * testing the constructor
-	 */
 	@Test()
 	public void testConstructor(){
-		int photoid = 123;
-		BridgePhoto bridge1 = new BridgePhoto(new PhotoId(photoid));
-		assertEquals(bridge1.getId().asInt(), photoid);
-	}
-
-	@Test (expected = IllegalArgumentException.class)
-	public void testSetLength(){
-		BridgePhoto bridge1 = new BridgePhoto(new PhotoId(007));
-		bridge1.setLength(-100);
+	Bridge bridge = new Bridge(new BridgeType("Highway Bridge"), "Golden Gate Bridge", "San Francisco", 2737, 1937);
+	PhotoId id = new PhotoId(123);
+	BridgePhoto photo = new BridgePhoto(id, bridge);
+	assertEquals(photo.getBridge(), bridge);
+	assertEquals(photo.getId(), id);
 	}
 }

@@ -1,32 +1,48 @@
 package org.wahlzeit.model;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Map;
 
 public class BridgeManager {
 
 	private static final BridgeManager instance = new BridgeManager();
 	
-	private Set<Bridge> bridges = new HashSet<>();
-	private Map<String, BridgeType>  bridgeTypes = new HashMap<String, BridgeType>();
+	private HashMap<Bridge, Bridge> bridges = new HashMap<>();
+	private Map<BridgeType, BridgeType>  bridgeTypes = new HashMap<>();
 	
+	//Singleton
+	private BridgeManager(){
+		
+	}
 	public static BridgeManager getInstance(){
 		return instance;
 	}
 	
-	public synchronized BridgeType getType (String name, String city, int length, int year_built){
-		BridgeType bridgeType = new BridgeType(name, city, length, year_built);
-		BridgeType result = bridgeTypes.get(bridgeType);
-		return result;
+	public boolean containsBridge(Bridge bridge){
+		return bridges.containsKey(bridge);
 	}
 	
-	public Bridge createBridge (String name, String city, int length, int year_built, String owner){
-		BridgeType bridgeType = new BridgeType(name, city, length, year_built);
-		Bridge bridge = bridgeType.createBridge(owner);
-		bridges.add(bridge);
+	public Bridge getBridge (Bridge bridge){
+		return bridges.get(bridge);
+	}
+	
+	public synchronized Bridge createBridge (BridgeType type, String name, String city, int length, int year_built){
+		Bridge bridge = new Bridge (type, name, city, length, year_built);
+		bridges.put(bridge, bridge);
 		return bridge;
 	}
 	
+	public boolean containsBridgeType (BridgeType type){
+		return bridgeTypes.containsKey(type);
+	}
+	
+	public BridgeType getBridgeType (BridgeType type){
+		return bridgeTypes.get(type);
+	}
+	
+	public synchronized BridgeType createBridgeType(String type_function){
+		BridgeType bridgeType = new BridgeType (type_function);
+		bridgeTypes.put(bridgeType, bridgeType);
+		return bridgeType;
+	}
 }

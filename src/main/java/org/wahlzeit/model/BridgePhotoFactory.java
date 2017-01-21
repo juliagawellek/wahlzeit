@@ -61,15 +61,12 @@ public class BridgePhotoFactory extends PhotoFactory{
 	/**
 	 * Creates a new photo with the specified id
 	 */
-	public BridgePhoto createBridgePhoto(PhotoId id) {
+	public BridgePhoto createBridgePhoto(PhotoId id, Bridge bridge) {
 		if (id == null){
 			throw new IllegalArgumentException ("id must not be null!");
 		}
-		return new BridgePhoto(id);
+		return new BridgePhoto(id, bridge);
 	}
 
-	public BridgePhoto createBridgePhoto(String name, String city, int length, int year){
-		return new BridgePhoto (name, city, length, year);
-	}
 
 }

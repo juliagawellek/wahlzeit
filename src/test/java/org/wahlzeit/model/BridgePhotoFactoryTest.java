@@ -23,7 +23,8 @@ public class BridgePhotoFactoryTest {
 	@Test()
 	public void test(){
 		BridgePhotoFactory factory = BridgePhotoFactory.getInstance();
-		BridgePhoto bridge = (BridgePhoto) factory.createBridgePhoto((new PhotoId(123)));
+		Bridge goldengate = new Bridge(new BridgeType("Highway Bridge"), "Golden Gate Bridge", "San Francisco", 2737, 1937);
+		BridgePhoto bridge = (BridgePhoto) factory.createBridgePhoto((new PhotoId(123)), goldengate);
 		BridgePhoto bridge2 = (BridgePhoto) factory.createBridgePhoto();
 		assertNotNull(factory);
 		assertEquals(bridge.getClass(),BridgePhoto.class);

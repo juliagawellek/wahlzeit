@@ -23,7 +23,8 @@ public class BridgePhotoManagerTest {
 	 */
 	@Test()
 	public void testadd () throws IOException{
-		BridgePhoto bridge = new BridgePhoto(new PhotoId(123));
+		Bridge goldengate = new Bridge(new BridgeType("Highway Bridge"), "Golden Gate Bridge", "San Francisco", 2737, 1937);
+		BridgePhoto bridge = new BridgePhoto(new PhotoId(123), goldengate);
 		BridgePhotoManager.getInstance().addPhoto(bridge);
 		assertEquals(BridgePhotoManager.getInstance().getPhoto(new PhotoId(123)), bridge);
 	}
