@@ -26,7 +26,10 @@ public class BridgeManager {
 		return bridges.get(bridge);
 	}
 	
+	//instantiating domain class: Bridge
+	//step1
 	public synchronized Bridge createBridge (BridgeType type, String name, String city, int length, int year_built){
+		//step 2
 		Bridge bridge = new Bridge (type, name, city, length, year_built);
 		bridges.put(bridge, bridge);
 		return bridge;
@@ -45,4 +48,5 @@ public class BridgeManager {
 		bridgeTypes.put(bridgeType, bridgeType);
 		return bridgeType;
 	}
+	
 }

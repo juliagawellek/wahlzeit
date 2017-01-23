@@ -33,6 +33,14 @@ public class BridgePhoto extends Photo{
 	 * constructor
 	 * @param myId
 	 */
+	public BridgePhoto(PhotoId myId) {
+		super(myId);
+	}
+	
+	/**
+	 * constructor
+	 * @param myId
+	 */
 	public BridgePhoto(PhotoId myId, Bridge bridge) {
 		super(myId);
 		this.bridge=bridge;

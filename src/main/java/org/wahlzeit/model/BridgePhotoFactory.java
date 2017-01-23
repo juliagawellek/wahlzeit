@@ -18,7 +18,9 @@ public class BridgePhotoFactory extends PhotoFactory{
 	/**
 	 * Hidden singleton instance; needs to be initialized from the outside.
 	 */
-	private static BridgePhotoFactory instance = null;
+    static {
+        instance = new BridgePhotoFactory();
+    }
 	
 	
 	/**
@@ -27,45 +29,24 @@ public class BridgePhotoFactory extends PhotoFactory{
 	public static void initialize() {
 		getInstance(); // drops result due to getInstance() side-effects
 	}
-
-	/**
-	 * Public singleton access method.
-	 */
-	public static synchronized BridgePhotoFactory getInstance() {
-		if (instance == null) {
-			log.config(LogBuilder.createSystemMessage().addAction("setting generic BridgePhotoFactory").toString());
-			setInstance(new BridgePhotoFactory());
-		}
-
-		return instance;
-	}
-
-	/**
-	 * Method to set the singleton instance of BridgePhotoFactory.
-	 */
-	protected static synchronized void setInstance(BridgePhotoFactory BridgephotoFactory) {
-		if (instance != null) {
-			throw new IllegalStateException("attempt to initalize BridgePhotoFactory twice");
-		}
-
-		instance = BridgephotoFactory;
-	}
 	
 	/**
 	 * @methodtype factory
 	 */
-	public BridgePhoto createBridgePhoto() {
+	@Override
+	public BridgePhoto createPhoto() {
 		return new BridgePhoto();
 	}
 	
 	/**
 	 * Creates a new photo with the specified id
 	 */
-	public BridgePhoto createBridgePhoto(PhotoId id, Bridge bridge) {
+	@Override
+	public BridgePhoto createPhoto(PhotoId id) {
 		if (id == null){
 			throw new IllegalArgumentException ("id must not be null!");
 		}
-		return new BridgePhoto(id, bridge);
+		return new BridgePhoto(id);
 	}
 
 
